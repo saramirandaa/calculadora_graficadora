@@ -81,7 +81,7 @@ class PlotWin:
         
         lFig = Figure(figsize=(5, 4), dpi=100) 
         lAxis = Axes3D(lFig) 
-        lAxis.plot_surface(XVecG, YVecG, ZMat, rstride=1, cstride=1, cmap='plasma')
+        lAxis.plot_surface(XVecG, YVecG, ZMat, rstride=1, cstride=1, cmap='inferno')
        
         
         
