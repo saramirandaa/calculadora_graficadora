@@ -12,7 +12,6 @@ import numpy as np
 #import math
 # mport json
 
-
 #******************************************************************************
 portada = "/Users/saramiranda/Documents/PO/PROYECTO/portada.png"
 menu = "/Users/saramiranda/Documents/PO/PROYECTO/menu.png"
@@ -122,9 +121,9 @@ class PlotWin(Graficador): #botones, graficas e imagenes
     def colores(self):
         self.combo = ttk.Combobox(
             state="readonly",
-            values=["Pastel", "Rojo", "Rosa", "Negro", "Arcoiris", "Azul", "Verde"])
+            values=["Azul", "Rojo", "Rosa", "Negro", "Verde", "Arcoiris", "Pastel"])
         self.combo.bind("<<ComboboxSelected>>", self.selection_changed)
-        self.combo.set('Pastel')
+        self.combo.set('Azul')
         self.combo.place(x=550, y=480)
     def createWindow(self):
         ancho = 960
@@ -259,6 +258,10 @@ class PlotWin(Graficador): #botones, graficas e imagenes
     def gets(self, ec):
         self.a = (float(self.txtA.get()) * float(self.txtA.get()))
         self.b = (float(self.txtB.get()) * float(self.txtB.get()))
+        if((self.a  == 0) or (self.b == 0)):
+            messagebox.showinfo(
+                title="ERROR",
+                message="El numero no debe ser CERO")
         
         if(ec==1):
             self.funcion = ('(',self.txtY.get(), '*Y*Y/', str(self.b), ')-(', 
@@ -452,7 +455,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.funcion = ('(',self.txtX.get(), '*X*X/', str(self.a), ')-(', 
                    self.txtY.get(), '*Y*Y/', str(self.b),')')
         self.funcion2 = ('((',self.txtX.get(), '*X*X/5*',str(self.a),')-(',
-        self.txtY.get(), '*2*Y*Y/4*', str(self.b),'))-1)')
+        self.txtY.get(), '*2*Y*Y/4*', str(self.b),'))-1')
         self.txtfunc = tkinter.Entry(self.window, borderwidth = 0, bg="black", fg ="black", width=5)
         self.txtfunc.place(x=980, y=352)
         prSetTxt(self.txtfunc, self.funcion2)
