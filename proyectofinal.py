@@ -92,6 +92,7 @@ class Graficador():
 #class Graficador
 class PlotWin(Graficador): #botones, graficas e imagenes
 
+    
     def fondos(self, ruta):
         self.portada = Image.open(ruta)
         self.test = ImageTk.PhotoImage(self.portada)
@@ -466,6 +467,8 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.showPlot(self.txtfunc.get(), self.txtRi.get(),
                       self.txtRf.get(), self.txtstep.get(),1, 'Cilindro hiperbólico', self.colmap)
         
+        
+        
     def conoelip(self): #LISTOO 4
         self.portadadir = conoelip
         self.fondos(self.portadadir)
@@ -498,6 +501,8 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.salir()
     #historial
 #classPlotWin
+    def txt(self):
+        pass
 
 class Historial():  #json (imagenes)
     pass
