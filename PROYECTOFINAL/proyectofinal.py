@@ -95,7 +95,7 @@ class Graficador():
 class PlotWin(Graficador): #botones, graficas e imagenes
 
     
-    def fondos(self, ruta):
+    def fondos(self, ruta): #Este método permite poner imagenes como fondos de pantalla
         self.portada = Image.open(ruta)
         self.test = ImageTk.PhotoImage(self.portada)
     
@@ -104,7 +104,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         
         self.label1.place(x=-1, y=0)
     #fondos
-    def selection_changed(self,event):
+    def selection_changed(self,event): #Este método ayuda a escoger el color de las graficas
         selection = self.combo.get()
         if (selection == 'Pastel'):
             self.colmap = 'Pastel1'
@@ -121,14 +121,15 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         elif(selection == 'Verde'):
             self.colmap = 'viridis'
         
-    def colores(self):
+    def colores(self): #Este metodo despliega un menu con los colores posibles
         self.combo = ttk.Combobox(
             state="readonly",
             values=["Azul", "Rojo", "Rosa", "Negro", "Verde", "Arcoiris", "Pastel"])
         self.combo.bind("<<ComboboxSelected>>", self.selection_changed)
         #self.combo.set('Azul')
         self.combo.place(x=550, y=480)
-    def createWindow(self):
+        
+    def createWindow(self): # Este metodo crea la pestaña de tkinter y despliega el menu principal
         ancho = 960
         alto = 540
         coordenadas = str(ancho)+'x'+str(alto) + '+100+200'
@@ -146,16 +147,16 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         
         self.window.mainloop()
     # createWindow
-    def menu(self):
+    def menu(self): #metodo que manda llamar la iagen de menu y un metodo de botones
         self.portadadir = menu
         self.fondos(self.portadadir)
         self.botones_menu()
-    def salir(self):
+    def salir(self): #metodo que permite tener un boton en donde nos regrese al menu principal
         self.back = tkinter.Button(self.window, borderwidth = 0, text = "MENU",
                                     command=self.menu)
         self.back.place(x=850, y=450, height = 50, width=75)
     #salir
-    def botones_menu(self):
+    def botones_menu(self): #metodo con los botones de cada grafica, cada una lleva a sus metodos respectivos
         self.hist = tkinter.Button(self.window, borderwidth = 0, 
                                     command=self.historial)
         self.hist.place(x=530, y=315, height = 20, width=20)
@@ -164,7 +165,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.elip = tkinter.Button(self.window, borderwidth = 0, 
                                     command=self.elipsoide)
         self.elip.place(x=93, y=140, height = 20, width=20)
-        
+        #-----
         self.par_elip = tkinter.Button(self.window, borderwidth = 0, 
                                     command=self.paraboloide_eliptico)
         self.par_elip.place(x=93, y=227, height = 20, width=20)
@@ -176,7 +177,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.cil_hip = tkinter.Button(self.window, borderwidth = 0, 
                                     command=self.cilindro_hiperbolico)
         self.cil_hip.place(x=93, y=405, height = 20, width=20)
-        
+        #------
         self.cono = tkinter.Button(self.window, borderwidth = 0, 
                                     command=self.conoelip)
         self.cono.place(x=530, y=140, height = 20, width=20)
@@ -187,7 +188,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         #______________________________
         
     #botones_menu
-    def parametros(self, band, band2):
+    def parametros(self, band, band2): #metodo con todos los parametros que las graficas utilizan
         self.colores()
         
         self.lblX = tkinter.Label(self.window, text="X = ", bg="black", fg ="white")
@@ -235,7 +236,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.lblZ = tkinter.Label(self.window, text="Z = ", bg="black", fg ="white")
         self.lblZ.place(x=350, y=430)
         
-        if (band == 1): # 1 = XYZ CON ABC
+        if (band == 1): # graficas con parametros 1 = XYZ CON ABC 
             self.lblZ = tkinter.Label(self.window, text="Z = ", bg="black", fg ="white")
             self.lblZ.place(x=350, y=352)
             self.txtZ = tkinter.Entry(self.window, bg="black", fg ="white", width=5)
@@ -252,13 +253,13 @@ class PlotWin(Graficador): #botones, graficas e imagenes
             self.graph = tkinter.Button(self.window, borderwidth = 0, text = "GRAPH",
                                         command=self.btngraph1)
             self.graph.place(x=650, y=352, height = 50, width=75)
-        elif(band2 == 2): # 1 = XYZ CON ABC
+        elif(band2 == 2): # 1 = XYZ CON ABC 
             self.graph = tkinter.Button(self.window, borderwidth = 0, text = "GRAPH",
                                         command=self.btngraph2)
             self.graph.place(x=650, y=352, height = 50, width=75)
             
     #parametros
-    def gets(self, ec):
+    def gets(self, ec): #Este metodo permite que la funcion de cada grafica cambie al momento de picar el boton
         self.a = (float(self.txtA.get()) * float(self.txtA.get()))
         self.b = (float(self.txtB.get()) * float(self.txtB.get()))
         if((self.a  == 0) or (self.b == 0)):
@@ -314,7 +315,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self._log(txt)
     #btngraph2
             
-    def paraboloide_hiper(self): #LISTOOO 2,0  1
+    def paraboloide_hiper(self): 
         self.portadadir = parhip
         self.fondos(self.portadadir)
         #------parametros-------
@@ -331,7 +332,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.salir()
     #paraboloide_hiper
     
-    def hiperboloide_doshojas(self): #LISTO 12 2
+    def hiperboloide_doshojas(self): #
         self.portadadir = hiper2
         self.fondos(self.portadadir)
         self.ec = 2
@@ -355,7 +356,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.salir()
     #hiperboloide_doshojas
     
-    def elipsoide(self): #FALTAN PARAMETROS A,B,C 1,0
+    def elipsoide(self): 
         self.portadadir = elipsoide
         self.fondos(self.portadadir)
         self.ec = 5
@@ -369,9 +370,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
        
         self.salir()
     #elipsoide
-    #####************************
-    def btn_elip(self):
-        
+    def btn_elip(self): #como el elipsoide se grafica con angulos y funciones trigonometricas tuvimos que hacer otro metodo de graficar
         ecuacion = self.ec
         self.gets(ecuacion)
         
@@ -407,7 +406,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         txt = ('Elipsoide \n'+str(self.funcion)+'\n')
         self._log(txt)
         
-    def paraboloide_eliptico(self): #LISTOOO 11 3
+    def paraboloide_eliptico(self): 
         self.portadadir = parel
         self.fondos(self.portadadir)
         self.ec = 3
@@ -457,7 +456,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         
         self.salir()
     #cilindro_hiperbolico
-    def btngraph5(self):
+    def btngraph5(self): #boton para el cilindro hiperbolico
         self.a = (float(self.txtA.get()) * float(self.txtA.get()))
         self.b = (float(self.txtB.get()) * float(self.txtB.get()))
         self.funcion = ('(',self.txtX.get(), '*X*X/', str(self.a), ')-(', 
@@ -478,7 +477,7 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self._log(txt)
         
         
-    def conoelip(self): #LISTOO 4
+    def conoelip(self): 
         self.portadadir = conoelip
         self.fondos(self.portadadir)
         self.ec = 4
@@ -487,7 +486,6 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.lblF = tkinter.Label(self.window, text="Z/C = ", bg="black", fg ="white")
         self.lblF.place(x=350, y=432)
         
-        self.nombre = 'Paraboloide Eliptico'
         self.a = (float(self.txtA.get()) * float(self.txtA.get()))
         self.b = (float(self.txtB.get()) * float(self.txtB.get()))
         self.c = (float(self.txtC.get()) * float(self.txtC.get()))
@@ -501,6 +499,8 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         
         self.salir()
     #cono
+    
+#Funciones que permiten abrir un txt que funge como historial
     def _log(self, pMssg):
         lFile = open(rutatxt, "at")
         lFile.write(pMssg)

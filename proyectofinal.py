@@ -487,7 +487,6 @@ class PlotWin(Graficador): #botones, graficas e imagenes
         self.lblF = tkinter.Label(self.window, text="Z/C = ", bg="black", fg ="white")
         self.lblF.place(x=350, y=432)
         
-        self.nombre = 'Paraboloide Eliptico'
         self.a = (float(self.txtA.get()) * float(self.txtA.get()))
         self.b = (float(self.txtB.get()) * float(self.txtB.get()))
         self.c = (float(self.txtC.get()) * float(self.txtC.get()))
