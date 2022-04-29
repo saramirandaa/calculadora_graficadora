@@ -55,7 +55,7 @@ class PlotWin:
         
         self.window.mainloop()
     
-    def showPlot(self ,pA, limS, limI, A):  
+    def showPlot2(self ,pA, limS, limI, A):  
         
         XVec = np.arange(limS, limI, A)
         XSize = XVec.size
@@ -92,7 +92,7 @@ class PlotWin:
      
     
     def btn01_click(self):
-        self.showPlot(float(self.txta.get()), float(self.txt02.get()), float(self.txt03.get()), float(self.txt04.get()))
+        self.showPlot2(float(self.txta.get()), float(self.txt02.get()), float(self.txt03.get()), float(self.txt04.get()))
         
 
 myPlotWin = PlotWin()
